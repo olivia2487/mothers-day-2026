@@ -1,0 +1,358 @@
+:root {
+  --pink: #3a55ec;
+  --red: #f03f32;
+  --pastel: #edebe5;
+  --pink1: #e97b0cdd;
+}
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+/* BASE PAGE */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5b43b;
+  color: #140909;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable cursor on interactive elements */
+button,
+a,
+.heart-btn,
+.clickable {
+  cursor: none !important;
+}
+
+/* =======================
+   LAYOUT (SIDES + CENTER)
+======================= */
+.page-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  gap: 5px;
+  align-items: start;
+}
+
+/* center content column */
+.main-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+.side-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side-gallery img {
+  width: 180px;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  border: 2px solid white; 
+  margin: -1px; 
+}
+.side-gallery img:hover {
+  transform: scale(1.15);
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* =======================
+   HERO
+======================= */
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #f5b43b, #fff7f9);
+  color: #ff4d6d;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* =======================
+   SECTIONS
+======================= */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.section.alt {
+  background: #ffeef4;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 30px;
+}
+
+/* =======================
+   CARDS
+======================= */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 260px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card.hover-effect:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+}
+
+.card.memory img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* =======================
+   HEART BUTTONS
+======================= */
+.heart-btn {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  margin: 40px auto;
+  cursor: pointer;
+}
+
+.heart-shape {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--red);
+  transform: rotate(-45deg);
+  filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.8))
+          drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
+}
+
+.heart-shape::before,
+.heart-shape::after {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  background: var(--red);
+  border-radius: 50%;
+}
+
+.heart-shape::before {
+  top: -55px;
+  left: 0;
+}
+
+.heart-shape::after {
+  left: 55px;
+  top: 0;
+}
+
+/* heartbeat animation (FIXED) */
+@keyframes gentleBounce {
+  0% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(-6px); }
+  100% { transform: rotate(-45deg) translateY(0); }
+}
+
+.surprise-heart .heart-shape {
+  animation: gentleBounce 2s infinite ease-in-out;
+}
+
+/* music pulse */
+@keyframes pulse {
+  0% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.12); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
+
+#musicBtn.playing .heart-shape {
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+/* =======================
+   SURPRISE CONTENT
+======================= */
+.surprise {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: var(--red);
+}
+
+/* =======================
+   FOOTER
+======================= */
+footer {
+  padding: 30px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* =======================
+   FADE IN EFFECT
+======================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =======================
+   FLOATING HEARTS
+======================= */
+.floating-heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  color: var(--red);
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+/* =======================
+   CURSOR HEART
+======================= */
+.heart-cursor {
+  position: fixed;
+  font-size: 24px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease;
+  z-index: 9999;
+
+  text-shadow:
+    0 0 6px rgba(255, 77, 109, 0.9),
+    0 0 12px rgba(255, 182, 193, 0.8),
+    0 0 18px rgba(255, 105, 180, 0.6);
+}
+
+/* disable cursor effect on mobile */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+
+  .heart-cursor {
+    display: none;
+  }
+}
+
+/* =======================
+   MUSIC WRAPPER
+======================= */
+.music-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.music-hint {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #d45a7c;
+  font-family: 'Inter', sans-serif;
+  animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* =======================
+   MOBILE
+======================= */
+@media (max-width: 768px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .side-gallery {
+    display: none;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+.side-gallery img {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+ 
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.side-gallery {
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  z-index: 1000;
+  align-self:start; 
+}
