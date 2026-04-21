@@ -38,20 +38,6 @@ document.addEventListener("mousemove", e => {
   spawnHeart(e.pageX, e.pageY);
 });
 
-// Heart touch trail (mobile)
-document.addEventListener("touchmove", e => {
-  const touch = e.touches[0];
-  if (!touch) return;
-
-  spawnHeart(touch.pageX, touch.pageY);
-});
-
-document.addEventListener("touchstart", e => {
-  const touch = e.touches[0];
-  if (!touch) return;
-
-  spawnHeart(touch.pageX, touch.pageY);
-});
 
 // Shared heart function 
 function spawnHeart(x, y) {
