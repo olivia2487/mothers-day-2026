@@ -147,7 +147,7 @@ h2 {
 }
 
 .heart-shape {
-  width: 100%;
+  width:100%;
   height: 100%;
   position: relative;
   background: var(--red);
@@ -309,11 +309,38 @@ footer {
 ======================= */
 @media (max-width: 768px) {
   .page-layout {
-    grid-template-columns: 1fr;
+    display: block;
   }
 
+  /* FIX side galleries to screen */
   .side-gallery {
-    display: none;
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 70px;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .side-gallery.left {
+    left: 0;
+  }
+
+  .side-gallery.right {
+    right: 0;
+  }
+
+  .side-gallery img {
+    width: 70px;
+    border-radius: 10px;
+  }
+
+  /* push main content so it doesn't overlap */
+  .main-content {
+    margin: 0 80px;
   }
 
   h1 {
@@ -333,24 +360,23 @@ footer {
     width: 90%;
     margin: 0 auto;
   }
+}
 
   img {
     max-width: 100%;
     height: auto;
   }
-}
 .side-gallery img {
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
- 
+  opacity: 0.8;
 }
 html {
   scroll-behavior: smooth;
 }
 
-.side-gallery {
-  position: -webkit-sticky;
-  position: sticky;
-  top:0;
-  z-index: 1000;
-  align-self:start; 
+@media (min-width: 769px) {
+  .side-gallery {
+    position: sticky;
+    top: 0;
+  }
 }
