@@ -84,7 +84,7 @@ h2::after {
   width: 160px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 2px;
   overflow: hidden;
   z-index: 1000;
 }
